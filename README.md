@@ -5,16 +5,29 @@ This project has nothing to do with the old one, just the same premise. I have d
 
 `node index.js`
 
-Not done at all :(
-
 ## Changes
 * #### V.0.1.0 IP
+  * ###### Build 030524
+    * A working level editor, and a previewer
+    * Dev mode. Run `node dev/liveEdit.js`
+    * Working UI and a player manager system
+    * Colors added somewhat
+    * Better level system
+    * LIVE EDITOR!
+    * Dev tools, pretty nice stuff
   * ###### Build 030424
-  * Created a map and file handler, which can create a linked dungeon.
-  * Currently a working level editor and a working walker
-  * User can exit to next level, and that is it.
+    * Created a map and file handler, which can create a linked dungeon.
+    * Currently a working level editor and a working walker
+    * User can exit to next level, and that is it.
 
 ## Planned
+- [ ] Maybe a UI File?
+- [ ] Coins or currency of some sort
+  - [ ] A coin spot on map, which will give the user x amount of $
+- [ ] Main manager
+  - [X] A file that sets the starting level
+  - [X] Maybe has user health?
+  - [ ] Custom items (or should I have default items or both?)
 - [ ] Battles of some sort
   - [ ] Health Bar
   - [ ] Enemy states
@@ -27,3 +40,12 @@ Not done at all :(
 - [ ] Colored UI and stuff
 - [ ] Game handler
   - [ ] Not sure if it should be index.js or somewhere else
+
+
+#### Quick .lvl doc
+First line is width, second is height  
+third is the spacing of each box (usually should be 3)  
+The rest is just points, with it being in the format `X,Y,~`, with ~ being any character.  
+It is important to have a point with the value "X", because that is the players starting point for the level.  
+Anything that has the value "E" are exits. These are important, because they'll link the player to the next level. To link them, after E, put `->` and the next level name.  
+Anything else, the player will not walk into. All lines that start with # are comments.

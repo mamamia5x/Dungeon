@@ -1,3 +1,4 @@
+const uiInfo = require("./uiInfo.js");
 module.exports.keys = {
     normal: {
         horizontal: "═",
@@ -74,6 +75,11 @@ module.exports.genMap = function (width, height, player = {x: 1, y: 1}, widthSiz
                     var y = j/2;
                     if (json.hasOwnProperty(x) && json[x].hasOwnProperty(y)) {
                         var pSize = widthSize - json[x][y].length;
+                        if (json[x][y] == 'X') {
+                            json[x][y] = uiInfo.foregroundColor(3) + "X" + uiInfo.colors.reset;
+                        } else if (json[x][y] == 'E') {
+                            json[x][y] = uiInfo.foregroundColor(28) + "E" + uiInfo.colors.reset;
+                        }
                         str += " ".repeat(Math.floor(pSize/2)) + json[x][y] + " ".repeat(Math.ceil(pSize/2));
                     } else {
                         str += " ".repeat(widthSize);
