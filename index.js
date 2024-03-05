@@ -2,9 +2,11 @@ const prompt = require("prompt-sync")();
 const fs = require("fs");
 const mapper = require("./map.js");
 const fileHandler = require("./fileHandler.js");
-const {openFileHandler} = require("./map");
+const playerManager = require("./player.js");
+const uiInfo = require("./uiInfo.js");
+var colors = uiInfo.colors;
 
-
+var player = playerManager.player;
 var main = fs.readFileSync("levels/main.mgr").toString();
 var mainName = main.split("\n")[0].trim();
 fileHandler.addLevel("levels/" + mainName + ".lvl", mainName);
@@ -26,6 +28,7 @@ while (!done) {
         console.log(current)
         console.log(current.player.x, current.player.y)
     }
+    displayStats();
     console.log(map)
     console.log(temp);
     var w = current.width;
@@ -54,4 +57,11 @@ while (!done) {
         current.player.x = x;
         current.player.y = y;
     }
+}
+
+function displayStats() {
+    var percent = Math.round(uiInfo.settings.statSize * player.health.value / player.health.max);
+    console.log(uiInfo.foregroundColor(49) + "Health [" + uiInfo.foregroundColor(115)+ "=".repeat(percent) + "-".repeat(uiInfo.settings.statSize - percent) + uiInfo.foregroundColor(49) + "] " + player.health.value + "/" + player.health.max);
+    uiInfo.reset();
+    console.log("Currently on Floor " + current.name.replace(/\D+/g, ""));
 }

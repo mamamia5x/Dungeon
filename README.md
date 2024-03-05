@@ -15,9 +15,10 @@ Not done at all :(
   * User can exit to next level, and that is it.
 
 ## Planned
+- [ ] Maybe a UI File?
 - [ ] Main manager
   - [X] A file that sets the starting level
-  - [ ] Maybe has user health?
+  - [X] Maybe has user health?
   - [ ] Custom items (or should I have default items or both?)
 - [ ] Battles of some sort
   - [ ] Health Bar
@@ -31,3 +32,12 @@ Not done at all :(
 - [ ] Colored UI and stuff
 - [ ] Game handler
   - [ ] Not sure if it should be index.js or somewhere else
+
+
+#### Quick .lvl doc
+First line is width, second is height  
+third is the spacing of each box (usually should be 3)  
+The rest is just points, with it being in the format `X,Y,~`, with ~ being any character.  
+It is important to have a point with the value "X", because that is the players starting point for the level.  
+Anything that has the value "E" are exits. These are important, because they'll link the player to the next level. To link them, after E, put `->` and the next level name.  
+Anything else, the player will not walk into. All lines that start with # are comments.
