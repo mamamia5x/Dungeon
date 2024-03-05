@@ -16,6 +16,7 @@ Not done at all :(
 
 ## Planned
 - [ ] Maybe a UI File?
+- [ ] Coins or currency of some sort
 - [ ] Main manager
   - [X] A file that sets the starting level
   - [X] Maybe has user health?

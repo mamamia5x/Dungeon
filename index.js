@@ -4,7 +4,6 @@ const mapper = require("./map.js");
 const fileHandler = require("./fileHandler.js");
 const playerManager = require("./player.js");
 const uiInfo = require("./uiInfo.js");
-var colors = uiInfo.colors;
 
 var player = playerManager.player;
 var main = fs.readFileSync("levels/main.mgr").toString();
@@ -61,7 +60,16 @@ while (!done) {
 
 function displayStats() {
     var percent = Math.round(uiInfo.settings.statSize * player.health.value / player.health.max);
-    console.log(uiInfo.foregroundColor(49) + "Health [" + uiInfo.foregroundColor(115)+ "=".repeat(percent) + "-".repeat(uiInfo.settings.statSize - percent) + uiInfo.foregroundColor(49) + "] " + player.health.value + "/" + player.health.max);
-    uiInfo.reset();
+    console.log(textColor(49) + "Health [" + textColor(115)+ "=".repeat(percent) + "-".repeat(uiInfo.settings.statSize - percent) + textColor(49) + "] " + player.health.value + "/" + player.health.max + uiInfo.colors.reset);
+    console.log(textColor(184) + "Coins: $(" + textColor(11) + player.coins + textColor(184) + ")" + uiInfo.colors.reset);
+    console.log();
     console.log("Currently on Floor " + current.name.replace(/\D+/g, ""));
+}
+
+function textColor(color) {
+    return uiInfo.foregroundColor(color);
+}
+
+function backgroundColor(color) {
+    return uiInfo.backgroundColor(color);
 }

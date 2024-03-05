@@ -5,5 +5,6 @@ module.exports.player = {
     },
     items: [],
     level: 1,
-    exp: 0
+    exp: 0,
+    coins: 140
 }
