@@ -15,6 +15,10 @@ Not done at all :(
   * User can exit to next level, and that is it.
 
 ## Planned
+- [ ] Main manager
+  - [X] A file that sets the starting level
+  - [ ] Maybe has user health?
+  - [ ] Custom items (or should I have default items or both?)
 - [ ] Battles of some sort
   - [ ] Health Bar
   - [ ] Enemy states

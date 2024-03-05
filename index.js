@@ -4,8 +4,11 @@ const mapper = require("./map.js");
 const fileHandler = require("./fileHandler.js");
 const {openFileHandler} = require("./map");
 
-fileHandler.addLevel("levels/test.lvl", "test");
-var current = fileHandler.levels.test;
+
+var main = fs.readFileSync("levels/main.mgr").toString();
+var mainName = main.split("\n")[0].trim();
+fileHandler.addLevel("levels/" + mainName + ".lvl", mainName);
+var current = fileHandler.levels[mainName];
 var temp = `
 You can 
 (w) Move Up
