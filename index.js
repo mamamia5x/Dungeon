@@ -6,9 +6,9 @@ const playerManager = require("./player.js");
 const uiInfo = require("./uiInfo.js");
 
 var player = playerManager.player;
-var main = fs.readFileSync("levels/main.mgr").toString();
+var main = fs.readFileSync(playerManager.defaults.directory + "/" + playerManager.defaults.manager).toString();
 var mainName = main.split("\n")[0].trim();
-fileHandler.addLevel("levels/" + mainName + ".lvl", mainName);
+fileHandler.addLevel(playerManager.defaults.directory + "/" + mainName + ".lvl", mainName);
 var current = fileHandler.levels[mainName];
 var temp = `
 You can 
@@ -19,11 +19,10 @@ You can
 (e) Exit
 `
 var done = false;
-var dev = false;
 while (!done) {
     var map = mapper.openFileHandler(current);
     console.clear();
-    if (dev) {
+    if (playerManager.defaults.dev) {
         console.log(current)
         console.log(current.player.x, current.player.y)
     }
@@ -36,7 +35,7 @@ while (!done) {
     var y = current.player.y;
     var input = prompt(" >").trim().toLowerCase();
     if (input == "e") break;
-    else if (input == "dev") dev = !dev;
+    else if (input == "dev") playerManager.defaults.dev = !playerManager.defaults.dev;
     else if (input == 'w') y --;
     else if (input == 's') y ++;
     else if (input == 'a') x --;
@@ -49,7 +48,7 @@ while (!done) {
     var exited = current.checkExit(x,y);
     if (exited != '') {
         current = {};
-        fileHandler.addLevel("levels/" + exited + ".lvl",exited);
+        fileHandler.addLevel(playerManager.defaults.directory + "/" + exited + ".lvl",exited);
         current = fileHandler.levels[exited];
     }
     else if (nextMove == '') {
