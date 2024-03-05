@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")();
+const prompt = require("./prompt.js")();
 const fs = require("fs");
 const mapper = require("./map.js");
 const fileHandler = require("./fileHandler.js");
