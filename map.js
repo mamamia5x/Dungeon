@@ -79,6 +79,8 @@ module.exports.genMap = function (width, height, player = {x: 1, y: 1}, widthSiz
                             json[x][y] = uiInfo.foregroundColor(3) + "X" + uiInfo.colors.reset;
                         } else if (json[x][y] == 'E') {
                             json[x][y] = uiInfo.foregroundColor(28) + "E" + uiInfo.colors.reset;
+                        } else if (json[x][y] == '$') {
+                            json[x][y] = uiInfo.foregroundColor(220) + "$" + uiInfo.colors.reset;
                         }
                         str += " ".repeat(Math.floor(pSize/2)) + json[x][y] + " ".repeat(Math.ceil(pSize/2));
                     } else {
@@ -125,6 +127,11 @@ module.exports.openFileHandler = function(fileHandlerData) {
     for (var i of Object.keys(fileHandlerData.exits)) {
         for (var j of Object.keys(fileHandlerData.exits[i])) {
             points.push([i,j,"E"]);
+        }
+    }
+    for (var i of Object.keys(fileHandlerData.coins)) {
+        for (var j of Object.keys(fileHandlerData.coins[i])) {
+            points.push([i,j,"$"]);
         }
     }
     return this.genMap(fileHandlerData.width, fileHandlerData.height, fileHandlerData.player, fileHandlerData.widthSize, points)

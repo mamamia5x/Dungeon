@@ -4,6 +4,7 @@ module.exports.levels = {}
 module.exports.keys = {
     'X': "player",
     'E': "exit",
+    '$': "coins"
 }
 module.exports.addLevel = function (filename, name=null) {
     if (name == null) {
@@ -17,6 +18,7 @@ module.exports.addLevel = function (filename, name=null) {
         widthSize: 3,
         player: {x: 1, y: 1},
         exits: {},
+        coins: {},
         points: {},
         get: function(x, y) {
             if (this.points.hasOwnProperty(x) && this.points[x].hasOwnProperty(y)) {
@@ -27,6 +29,12 @@ module.exports.addLevel = function (filename, name=null) {
         checkExit: function (x, y) {
             if (this.exits.hasOwnProperty(x) && this.exits[x].hasOwnProperty(y)) {
                 return this.exits[x][y];
+            }
+            return "";
+        },
+        checkCoin: function (x, y) {
+            if (this.coins.hasOwnProperty(x) && this.coins[x].hasOwnProperty(y)) {
+                return this.coins[x][y];
             }
             return "";
         }
@@ -54,6 +62,12 @@ module.exports.addLevel = function (filename, name=null) {
                 json.exits[i[0]][i[1]] = i[2].split(">")[1];
             }
             else if (i[2] == 'E') {}
+            else if (i[2].charAt(0) == "$" && i[2].charAt(1) == '-' && i[2].charAt(2) == ">") {
+                if (!json.coins.hasOwnProperty(i[0])) {
+                    json.coins[i[0]] = {};
+                }
+                json.coins[i[0]][i[1]] = i[2].split(">")[1];
+            }
             else if (this.keys.hasOwnProperty(i[2]) && this.keys[i[2]] == "player") {
                 json.player.x = i[0];
                 json.player.y = i[1];

@@ -41,7 +41,5 @@
 2,7,W
 3,7,W
 4,7,W
-# 4,1,$
-# Idea, have a $ or C, to represent coins of some sort. Have a $->100
-# to show how much money you get, or to maybe have a range like
-# $->50-75
+4,1,$->10
+1,8,$->50:75

@@ -128,7 +128,6 @@ function getInput() {
         console.log("You can type \"dev\" to turn off dev logging.");
         prompt("Press enter to continue");
         runTest();
-        getInput();
     } else if (input == 7) {
 
     } else {
